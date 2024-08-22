@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--        Reporte de pacientes en formato PDF-->
+        <record id="action_report_pacientes" model="ir.actions.report">
+            <field name="name">Pacientes</field>
+            <field name="model">paciente</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vertical_hospitales.report_pacientes</field>
+            <field name="report_file">vertical_hospitales.report_pacientes</field>
+            <field name="binding_model_id" ref="vertical_hospitales.model_paciente"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Lista de pacientes'</field>
+        </record>
+
+        <!--        Template para el reporte de pacientes que lista los pacientes en una tabla -->
+        <!--        con los campos ID Paciente, Nombre, Apellido, DNI y Estado-->
+        <template id="pacientes_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2>
+                            <span>Lista de pacientes:</span>
+                        </h2>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>ID Paciente</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>DNI</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="paciente">
+                                    <tr>
+                                        <td>
+                                            <span t-field="paciente.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="paciente.nombre_paciente"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="paciente.apellido_paciente"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="paciente.dni_paciente"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="paciente.estado"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!--       Llamada al template de reporte de pacientes-->
+        <template id="report_pacientes">
+            <t t-call="vertical_hospitales.pacientes_report"/>
+        </template>
+    </data>
+</odoo>

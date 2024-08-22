@@ -30,6 +30,7 @@
         'views/paciente.xml',
         'views/tratamiento.xml',
         'views/hospital_config_view.xml',
+        'reports/report_pacientes.xml',
     ],
     'application': True,
     'installable': True,
