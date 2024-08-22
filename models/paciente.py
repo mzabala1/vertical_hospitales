@@ -2,9 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
-import calendar
+from datetime import datetime
 
 
 class Paciente(models.Model):  # Definición de la clase
