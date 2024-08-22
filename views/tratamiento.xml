@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tratamientos -->
+
+        <!-- Form View -->
+        <record id="view_tratamiento_form" model="ir.ui.view">
+            <field name="name">tratamiento.form</field>
+            <field name="model">tratamiento</field>
+            <field name="arch" type="xml">
+                <form name="Tratamiento">
+                    <sheet>
+                        <group col="4">
+                            <field name="codigo"/>
+                            <field name="name"/>
+                            <field name="medico_tratante"/>
+                        </group>
+                        <notebook>
+                            <page string="Pacientes en tratamiento">
+                                <group>
+                                    <field name="paciente_ids" nolabel="1" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_tratamientos_tree" model="ir.ui.view">
+            <field name="name">tratamiento.tree</field>
+            <field name="model">tratamiento</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="codigo"/>
+                    <field name="name"/>
+                    <field name="medico_tratante"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="tratamiento_action" model="ir.actions.act_window">
+            <field name="name">Tratamiento</field>
+            <field name="res_model">tratamiento</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="tratamiento_menuitem"
+                  name="Tratamiento"
+                  action="tratamiento_action"
+                  parent="vertical_hospitales_menuitem"
+                  sequence="2"/>
+    </data>
+</odoo>

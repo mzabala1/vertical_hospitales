@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vertical hospitales main menu -->
+        <menuitem id="vertical_hospitales_menuitem"
+                  name="Vertical Hospitales"
+                  sequence="50"
+                  web_icon="vertical_hospitales,static/description/icon.png"/>
+
+        <!-- Paciente -->
+
+        <!-- Form View -->
+        <record id="view_paciente_form" model="ir.ui.view">
+            <field name="name">paciente.form</field>
+            <field name="model">paciente</field>
+            <field name="arch" type="xml">
+                <form name="Paciente">
+                    <header>
+                        <field name="estado" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group col="4">
+                            <field name="nombre_paciente"/>
+                            <field name="apellido_paciente"/>
+                            <field name="dni_paciente"/>
+                        </group>
+                        <group>
+                            <field name="fecha_hora_alta"/>
+                            <field name="write_date" string="Fecha y hora de actualización"/>
+                        </group>
+                        <notebook>
+                            <page string="Tratamientos">
+                                <group>
+                                    <field name="tratamiento_ids" nolabel="1" options="{'no_open': True, 'no_create': True, 'no_edit': True}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view-->
+        <record id="view_paciente_tree" model="ir.ui.view">
+            <field name="name">paciente.tree</field>
+            <field name="model">paciente</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="nombre_paciente"/>
+                    <field name="apellido_paciente"/>
+                    <field name="dni_paciente"/>
+                    <field name="estado"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="paciente_action" model="ir.actions.act_window">
+            <field name="name">Paciente</field>
+            <field name="res_model">paciente</field>
+            <field name="view_mode">tree,form</field>
+            <!--            <field name="context">{module: 'vertical_hospitales'}</field>-->
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="paciente_menuitem"
+                  name="Paciente"
+                  action="paciente_action"
+                  parent="vertical_hospitales_menuitem"
+                  sequence="1"/>
+    </data>
+</odoo>

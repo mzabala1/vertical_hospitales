@@ -1,0 +1,25 @@
+<odoo>
+    <!-- Vista para la configuración del webservice en Ajustes -->
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div id="hospitalconf" class="app_settings_block" data-string="Hospital" string="Hospital" data-key="vertical_hospitales">
+                        <h2>Hospital</h2>
+                        <div id="hospitalconf_cont" class="row mt16 o_settings_container">
+                            <div id="hospitalconf_url" class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <div class="mt16 row">
+                                        <label for="hospital_endpoint_url" class="col-xs-3 col-md-3 o_light_label"/>
+                                        <field name="hospital_endpoint_url" style="width:70%"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
